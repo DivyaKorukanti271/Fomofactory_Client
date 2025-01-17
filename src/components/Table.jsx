@@ -162,6 +162,7 @@ setData(result);
 const pageData = result.slice((page * pageSize) - pageSize, page * pageSize);
            setRows(pageData);
             const val = [...new Set(result.map(q => q.name))];
+           
             setnames(val)
         } catch (error) {
             setError(error.message);
@@ -259,11 +260,14 @@ const pageData = result.slice((page * pageSize) - pageSize, page * pageSize);
                     >
                         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Select Crypto</h2>
                         <select value={selectedOption} onChange={handleSelect}>
-                            {names&&names.map((option, index) => (
-                                <option key={index} value={option}>
-                                    {option}
-                                </option>
-                            ))}
+                        {Array.isArray(names)&&names.map((crypto, index) => (
+  typeof crypto === 'string' ? (
+    <option key={index} value={crypto}>
+      {crypto}
+    </option>
+  ) : null
+))}
+                           
                         </select>
                         <button onClick={closeModal}>close</button>
                     </Modal>
