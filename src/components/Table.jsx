@@ -162,7 +162,7 @@ setData(result);
 const pageData = result.slice((page * pageSize) - pageSize, page * pageSize);
            setRows(pageData);
             const val = [...new Set(result.map(q => q.name))];
-           
+           //update
             setnames(val)
         } catch (error) {
             setError(error.message);
